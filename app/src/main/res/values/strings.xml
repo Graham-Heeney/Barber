@@ -3,5 +3,6 @@
     <string name="button_addBarber">Add Barber</string>
     <string name="hint_barberTitle">Barber Title</string>
     <string name="hint_barberDescription">Enter Description</string>
+    <string name="menu_addBarber">Add</string>
 
 </resources>

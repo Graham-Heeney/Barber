@@ -25,23 +25,21 @@ class BarberActivity : AppCompatActivity() {
 
 
 
-        binding.btnAdd.setOnClickListener() {
+        binding.btnAdd.setOnClickListener {
             barber.title = binding.barberTitle.text.toString()
             barber.description = binding.barberDescription.text.toString()
-
             if (barber.title.isNotEmpty()) {
                 app.barbers.add(barber.copy())
                 i("Add Button Pressed: $barber")
-
                 for (i in app.barbers.indices) {
-                    i("Barber[$i]: ${app.barbers[i]}")
+                    i("Barber[$i]: ${this.app.barbers[i]}")
                 }
-
-                binding.barberTitle.setText("")
-                binding.barberDescription.setText("")
+                setResult(RESULT_OK)
+                finish()
             } else {
                 Snackbar.make(it, "Please Enter a title", Snackbar.LENGTH_LONG).show()
             }
         }
+
     }
 }

@@ -1,4 +1,4 @@
-package org.wit.barber.activities
+package org.wit.barber.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.wit.barber.databinding.CardBarberBinding
 import org.wit.barber.models.BarberModel
 
-class BarberAdapter(private var barbers: List<BarberModel>) :
+class BarberAdapter constructor(private var barbers: List<BarberModel>) :
     RecyclerView.Adapter<BarberAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
