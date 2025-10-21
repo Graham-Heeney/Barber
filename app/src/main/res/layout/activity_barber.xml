@@ -54,6 +54,22 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp" />
 
+                <!-- ✨ New Description Field -->
+                <EditText
+                    android:id="@+id/barberDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:autofillHints="hint"
+                    android:hint="@string/hint_barberDescription"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:maxLines="3"
+                    android:padding="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+
+
                 <Button
                     android:id="@+id/btnAdd"
                     android:layout_width="match_parent"

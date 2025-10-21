@@ -7,9 +7,10 @@ import org.wit.barber.models.BarberModel
 import org.wit.barber.databinding.ActivityBarberBinding
 import timber.log.Timber
 import timber.log.Timber.i
+val barbers = ArrayList<BarberModel>()
 
 class BarberActivity : AppCompatActivity() {
-    
+
     private lateinit var binding: ActivityBarberBinding
     var barber = BarberModel()
     
@@ -22,17 +23,29 @@ class BarberActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree())
         
         i("Barber Activity started...")
-        
+
         binding.btnAdd.setOnClickListener() {
             barber.title = binding.barberTitle.text.toString()
+            barber.description = binding.barberDescription.text.toString()
+
             if (barber.title.isNotEmpty()) {
-                i("add Button Pressed: $barber.title")
-            }
-            else {
+                i("Add Button Pressed: ${barber.title}")
+                i("Description Entered: ${barber.description}")
+
+                barbers.add(barber.copy())   // Add a copy of the current barber
+                i("All Barbers: $barbers")
+
+                // Clear the input fields after adding
+                binding.barberTitle.setText("")
+                binding.barberDescription.setText("")
+            } else {
                 Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                    .make(it, "Please Enter a title", Snackbar.LENGTH_LONG)
                     .show()
             }
         }
+
+
+
     }
 }

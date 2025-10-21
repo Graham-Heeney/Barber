@@ -1,3 +1,4 @@
 package org.wit.barber.models
 
-data class BarberModel(var title: String = "")
+data class BarberModel(var title: String = "",
+    var description: String = "")
