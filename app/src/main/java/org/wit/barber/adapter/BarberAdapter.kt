@@ -6,8 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.wit.barber.databinding.CardBarberBinding
 import org.wit.barber.models.BarberModel
 
-class BarberAdapter constructor(private var barbers: List<BarberModel>) :
-    RecyclerView.Adapter<BarberAdapter.MainHolder>() {
+interface BarberListener {
+    fun onBarberClick(barber: BarberModel)
+}
+
+class BarberAdapter(
+    private var barbers: List<BarberModel>,
+    private val listener: BarberListener
+) : RecyclerView.Adapter<BarberAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardBarberBinding
@@ -17,7 +23,7 @@ class BarberAdapter constructor(private var barbers: List<BarberModel>) :
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val barber = barbers[holder.adapterPosition]
-        holder.bind(barber)
+        holder.bind(barber, listener)
     }
 
     override fun getItemCount(): Int = barbers.size
@@ -25,9 +31,10 @@ class BarberAdapter constructor(private var barbers: List<BarberModel>) :
     class MainHolder(private val binding: CardBarberBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(barber: BarberModel) {
+        fun bind(barber: BarberModel, listener: BarberListener) {
             binding.barberTitle.text = barber.title
             binding.barberDescription.text = barber.description
+            binding.root.setOnClickListener { listener.onBarberClick(barber) }
         }
     }
 }

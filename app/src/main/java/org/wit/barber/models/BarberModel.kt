@@ -1,4 +1,10 @@
 package org.wit.barber.models
 
-data class BarberModel(var title: String = "",
-    var description: String = "")
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class BarberModel(
+    var title: String = "",
+    var description: String = ""
+) : Parcelable

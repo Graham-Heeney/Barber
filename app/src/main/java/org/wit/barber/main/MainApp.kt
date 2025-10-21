@@ -1,21 +1,22 @@
 package org.wit.barber.main
 
 import android.app.Application
+import org.wit.barber.models.BarberMemStore
 import org.wit.barber.models.BarberModel
 import timber.log.Timber
 import timber.log.Timber.i
 
 class MainApp : Application() {
 
-    val barbers = ArrayList<BarberModel>()
+    val barbers = BarberMemStore()
 
     override fun onCreate() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        i("Barber App started")
+        i("Barber app started")
 
-        barbers.add(BarberModel("John's Barbers", "Classic haircuts"))
-        barbers.add(BarberModel("Sharp Style", "Modern fades and trims"))
-        barbers.add(BarberModel("Gentlemen's Den", "Traditional grooming"))
+        barbers.create(BarberModel("John", "Fade Specialist"))
+        barbers.create(BarberModel("Sarah", "Stylist"))
+        barbers.create(BarberModel("Mike", "Beard Expert"))
     }
 }

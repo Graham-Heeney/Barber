@@ -1,14 +1,14 @@
 package org.wit.barber.activities
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import org.wit.barber.R
 import org.wit.barber.databinding.ActivityBarberBinding
 import org.wit.barber.main.MainApp
 import org.wit.barber.models.BarberModel
-import timber.log.Timber.i
 
 class BarberActivity : AppCompatActivity() {
 
@@ -21,16 +21,22 @@ class BarberActivity : AppCompatActivity() {
         binding = ActivityBarberBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        app = application as MainApp
-        binding.toolbar.title = "Add Barber"
+        binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
+        app = application as MainApp
+
+        if (intent.hasExtra("barber_edit")) {
+            barber = intent.getParcelableExtra("barber_edit")!!
+            binding.barberTitle.setText(barber.title)
+            binding.barberDescription.setText(barber.description)
+        }
 
         binding.btnAdd.setOnClickListener {
             barber.title = binding.barberTitle.text.toString()
             barber.description = binding.barberDescription.text.toString()
             if (barber.title.isNotEmpty()) {
-                app.barbers.add(barber.copy())
-                i("Add Button Pressed: $barber")
+                app.barbers.create(barber.copy())
                 setResult(RESULT_OK)
                 finish()
             } else {
@@ -40,16 +46,13 @@ class BarberActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(org.wit.barber.R.menu.menu_barber, menu)
+        menuInflater.inflate(R.menu.menu_barber, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            org.wit.barber.R.id.item_cancel -> {
-                setResult(RESULT_CANCELED)
-                finish()
-            }
+            R.id.item_cancel -> finish()
         }
         return super.onOptionsItemSelected(item)
     }
