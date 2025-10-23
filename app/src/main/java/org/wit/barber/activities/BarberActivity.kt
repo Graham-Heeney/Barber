@@ -35,8 +35,13 @@ class BarberActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             barber.title = binding.barberTitle.text.toString()
             barber.description = binding.barberDescription.text.toString()
+
             if (barber.title.isNotEmpty()) {
-                app.barbers.create(barber.copy())
+                if (intent.hasExtra("barber_edit")) {
+                    app.barbers.update(barber.copy())
+                } else {
+                    app.barbers.create(barber.copy())
+                }
                 setResult(RESULT_OK)
                 finish()
             } else {

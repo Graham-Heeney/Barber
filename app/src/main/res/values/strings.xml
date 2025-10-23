@@ -4,5 +4,9 @@
     <string name="hint_barberTitle">Barber Title</string>
     <string name="hint_barberDescription">Enter Description</string>
     <string name="menu_addBarber">Add</string>
+    <string name="add_barber">Add Barber</string>
+    <string name="edit_barber">Edit Barber</string>
+    <string name="save_barber">Save Barber</string>
+
 
 </resources>
