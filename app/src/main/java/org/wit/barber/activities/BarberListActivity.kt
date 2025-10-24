@@ -26,6 +26,11 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         setContentView(binding.root)
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+        binding.fabAddBarber.setOnClickListener {
+            val launcherIntent = Intent(this, BarberActivity::class.java)
+            getResult.launch(launcherIntent)
+        }
+
 
         app = application as MainApp
 
@@ -39,15 +44,7 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_add -> {
-                val launcherIntent = Intent(this, BarberActivity::class.java)
-                getResult.launch(launcherIntent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+
 
     private val getResult =
         registerForActivityResult(
@@ -66,6 +63,7 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         launcherIntent.putExtra("barber_edit", barber)
         getClickResult.launch(launcherIntent)
     }
+
 
 
     private val getClickResult =
