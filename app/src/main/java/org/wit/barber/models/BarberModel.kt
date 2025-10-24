@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BarberModel(
-    var id: String = "0",
+    var id: Long = 0,
     var title: String = "",
     var description: String = ""
 ) : Parcelable
