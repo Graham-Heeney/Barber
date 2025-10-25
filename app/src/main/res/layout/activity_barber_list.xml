@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context="org.wit.barber.activities.BarberListActivity">
+    android:background="@color/background"
+    tools:context="org.wit.barber.activities.BarberListActivity"
+    >
 
     <!-- Top App Bar -->
     <com.google.android.material.appbar.AppBarLayout
