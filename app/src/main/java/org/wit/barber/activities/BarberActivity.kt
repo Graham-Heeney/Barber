@@ -57,8 +57,20 @@ class BarberActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_cancel -> finish()
+            R.id.item_cancel -> {
+                setResult(RESULT_CANCELED)
+                finish()
+            }
+
+            R.id.item_delete -> {
+                if (intent.hasExtra("barber_edit")) {
+                    app.barbers.delete(barber)
+                    setResult(RESULT_OK)
+                    finish()
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

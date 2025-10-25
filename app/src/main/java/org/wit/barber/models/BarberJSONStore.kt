@@ -51,7 +51,8 @@ class BarberJSONStore(private val context: Context) : BarberStore {
     }
 
     override fun delete(barber: BarberModel) {
-
+        barbers.removeIf { it.id == barber.id }
+        serialize()
     }
 
 
@@ -66,6 +67,11 @@ class BarberJSONStore(private val context: Context) : BarberStore {
 
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
-        barbers = Gson().fromJson(jsonString, listType)
+        if (jsonString.isNotEmpty()) {
+            barbers = Gson().fromJson(jsonString, listType)
+        } else {
+            barbers = mutableListOf()
+        }
     }
+
 }

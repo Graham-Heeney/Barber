@@ -70,11 +70,12 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(
-                    0,
-                    app.barbers.findAll().size
-                )
+            if (it.resultCode == RESULT_OK) {
+                // Rebind the adapter to the updated list
+                binding.recyclerView.adapter =
+                    BarberAdapter(app.barbers.findAll(), this)
+                binding.recyclerView.adapter?.notifyDataSetChanged()
             }
         }
+
 }
