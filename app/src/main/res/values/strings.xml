@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Barber</string>
     <string name="button_addBarber">Add Barber</string>
-    <string name="hint_barberTitle">Barber Title</string>
-    <string name="hint_barberDescription">Enter Description</string>
+    <string name="hint_barberTitle">Barber Name</string>
+    <string name="hint_barberDescription">Enter Address</string>
     <string name="menu_addBarber">Add</string>
     <string name="add_barber">Add Barber</string>
     <string name="edit_barber">Edit Barber</string>

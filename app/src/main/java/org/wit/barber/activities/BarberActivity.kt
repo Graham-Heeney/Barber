@@ -28,13 +28,13 @@ class BarberActivity : AppCompatActivity() {
 
         if (intent.hasExtra("barber_edit")) {
             barber = intent.getParcelableExtra("barber_edit")!!
-            binding.barberTitle.setText(barber.title)
-            binding.barberDescription.setText(barber.description)
+            binding.barberName.setText(barber.title)
+            binding.barberAddress.setText(barber.description)
         }
 
         binding.btnAdd.setOnClickListener {
-            barber.title = binding.barberTitle.text.toString()
-            barber.description = binding.barberDescription.text.toString()
+            barber.title = binding.barberName.text.toString()
+            barber.description = binding.barberAddress.text.toString()
 
             if (barber.title.isNotEmpty()) {
                 if (intent.hasExtra("barber_edit")) {

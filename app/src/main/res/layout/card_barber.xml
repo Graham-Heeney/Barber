@@ -30,5 +30,8 @@
             android:textSize="16sp"
             tools:text="Barber description goes here" />
 
+
+
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

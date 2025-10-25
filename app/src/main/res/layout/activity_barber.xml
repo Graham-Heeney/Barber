@@ -26,28 +26,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <EditText
-            android:id="@+id/barberTitle"
+            android:id="@+id/barberName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Barber Name" />
+            android:hint="Barber Name"
+            android:inputType="textPersonName"
+            android:background="@drawable/edittext_bg"
+            android:padding="12dp"
+            android:textColorHint="@color/gray"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="12dp" />
 
         <EditText
-            android:id="@+id/barberDescription"
+            android:id="@+id/barberAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Barber Location" />
+            android:hint="Barber Address"
+            android:inputType="textPostalAddress"
+            android:background="@drawable/edittext_bg"
+            android:padding="12dp"
+            android:textColorHint="@color/gray"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp" />
 
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Barber" />
+            android:text="Add Barber"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
