@@ -35,13 +35,13 @@
             android:id="@+id/barberTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Barber Title" />
+            android:hint="Barber Name" />
 
         <EditText
             android:id="@+id/barberDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Description" />
+            android:hint="Enter Barber Location" />
 
         <Button
             android:id="@+id/btnAdd"
