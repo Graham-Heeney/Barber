@@ -24,6 +24,8 @@ class BarberActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBarberBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
+
 
     var barber = BarberModel()
     lateinit var app: MainApp
@@ -36,9 +38,15 @@ class BarberActivity : AppCompatActivity() {
         binding.barberLocation.setOnClickListener {
             i ("Set Location Pressed")
         }
+        binding.barberLocation.setOnClickListener {
+            i("Set Location Pressed")
+            val launcherIntent = Intent(this, MapActivity::class.java)
+            mapIntentLauncher.launch(launcherIntent)
+        }
 
 
         registerImagePickerCallback()
+        registerMapCallback()
 
         binding.chooseImage.setOnClickListener {
             showImagePicker(this, imageIntentLauncher)
@@ -78,6 +86,14 @@ class BarberActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_barber, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { i("Map Loaded") }
+    }
+
 
     private fun registerImagePickerCallback() {
         if (intent.hasExtra("barber_edit")) {
