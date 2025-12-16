@@ -33,6 +33,10 @@ class BarberActivity : AppCompatActivity() {
 
         binding = ActivityBarberBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.barberLocation.setOnClickListener {
+            i ("Set Location Pressed")
+        }
+
 
         registerImagePickerCallback()
 
