@@ -11,18 +11,32 @@ import org.wit.barber.main.MainApp
 import org.wit.barber.models.BarberModel
 import timber.log.Timber
 import timber.log.Timber.i
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import org.wit.barber.helpers.showImagePicker
+
 
 
 class BarberActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBarberBinding
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+
     var barber = BarberModel()
     lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityBarberBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        registerImagePickerCallback()
+
+        binding.chooseImage.setOnClickListener {
+            showImagePicker(this, imageIntentLauncher)
+        }
 
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
@@ -51,17 +65,29 @@ class BarberActivity : AppCompatActivity() {
                 Snackbar.make(it, "Please Enter a title", Snackbar.LENGTH_LONG).show()
             }
         }
-
-        binding.chooseImage.setOnClickListener {
-            i("Select image")
-        }
-
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_barber, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
