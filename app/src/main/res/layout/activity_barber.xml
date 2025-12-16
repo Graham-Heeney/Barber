@@ -58,6 +58,27 @@
             android:layout_marginBottom="20dp" />
 
         <Button
+            android:id="@+id/chooseImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@color/colorAccent"
+            android:importantForAccessibility="no"
+            android:padding="8dp"
+            android:text="@string/button_addImage"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:ignore="VisualLintButtonSize" />
+
+        <ImageView
+            android:id="@+id/barberImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:ignore="ImageContrastCheck" />
+
+        <Button
             android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,6 +87,7 @@
             android:backgroundTint="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_marginTop="8dp" />
+
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

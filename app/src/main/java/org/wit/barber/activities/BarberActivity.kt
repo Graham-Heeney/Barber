@@ -9,6 +9,9 @@ import org.wit.barber.R
 import org.wit.barber.databinding.ActivityBarberBinding
 import org.wit.barber.main.MainApp
 import org.wit.barber.models.BarberModel
+import timber.log.Timber
+import timber.log.Timber.i
+
 
 class BarberActivity : AppCompatActivity() {
 
@@ -48,6 +51,11 @@ class BarberActivity : AppCompatActivity() {
                 Snackbar.make(it, "Please Enter a title", Snackbar.LENGTH_LONG).show()
             }
         }
+
+        binding.chooseImage.setOnClickListener {
+            i("Select image")
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

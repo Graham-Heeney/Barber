@@ -7,6 +7,9 @@
     <string name="add_barber">Add Barber</string>
     <string name="edit_barber">Edit Barber</string>
     <string name="save_barber">Save Barber</string>
+    <string name="button_addImage"> Add Image </string>
+
+
 
 
 </resources>
