@@ -129,11 +129,11 @@ class BarberActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            barber.image = result.data!!.data!!
+                            barber.image = result.data!!.data.toString()
                             Picasso.get()
                                 .load(barber.image)
                                 .into(binding.barberImage)
-                            if (barber.image != Uri.EMPTY) {
+                            if (barber.image.isNotEmpty()) {
                                 binding.chooseImage.setText(R.string.change_barber_image)
                             }
 
