@@ -12,8 +12,10 @@ import org.wit.barber.models.BarberModel
 import timber.log.Timber
 import timber.log.Timber.i
 import android.content.Intent
+import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.squareup.picasso.Picasso
 import org.wit.barber.helpers.showImagePicker
 
 
@@ -81,12 +83,18 @@ class BarberActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
+                            barber.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(barber.image)
+                                .into(binding.barberImage)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
     }
+
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
