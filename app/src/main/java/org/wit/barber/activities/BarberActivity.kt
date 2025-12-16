@@ -76,6 +76,7 @@ class BarberActivity : AppCompatActivity() {
     }
 
     private fun registerImagePickerCallback() {
+        if (intent.hasExtra("placemark_edit")) {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
@@ -92,7 +93,7 @@ class BarberActivity : AppCompatActivity() {
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
-    }
+    }}
 
 
 
