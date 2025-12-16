@@ -46,6 +46,8 @@ class BarberJSONStore(private val context: Context) : BarberStore {
         if (foundBarber != null) {
             foundBarber.title = barber.title
             foundBarber.description = barber.description
+            foundBarber.image = barber.image
+
         }
         serialize()
     }

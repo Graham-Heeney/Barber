@@ -76,7 +76,7 @@ class BarberActivity : AppCompatActivity() {
     }
 
     private fun registerImagePickerCallback() {
-        if (intent.hasExtra("placemark_edit")) {
+        if (intent.hasExtra("barber_edit")) {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { result ->
@@ -88,6 +88,10 @@ class BarberActivity : AppCompatActivity() {
                             Picasso.get()
                                 .load(barber.image)
                                 .into(binding.barberImage)
+                            if (barber.image != Uri.EMPTY) {
+                                binding.chooseImage.setText(R.string.change_barber_image)
+                            }
+
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
