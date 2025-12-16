@@ -17,7 +17,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.squareup.picasso.Picasso
 import org.wit.barber.helpers.showImagePicker
-
+import org.wit.barber.models.Location
 
 
 class BarberActivity : AppCompatActivity() {
@@ -39,10 +39,12 @@ class BarberActivity : AppCompatActivity() {
             i ("Set Location Pressed")
         }
         binding.barberLocation.setOnClickListener {
-            i("Set Location Pressed")
+            val location = Location(52.245696, -7.139102, 15f)
             val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
         }
+
 
 
         registerImagePickerCallback()
