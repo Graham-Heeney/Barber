@@ -40,10 +40,17 @@ class BarberActivity : AppCompatActivity() {
             i ("Set Location Pressed")
         }
         binding.barberLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
+            if (barber.zoom != 0f) {
+                location.lat =  barber.lat
+                location.lng = barber.lng
+                location.zoom = barber.zoom
+            }
             val launcherIntent = Intent(this, MapActivity::class.java)
                 .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
         }
+
 
 
 
@@ -99,15 +106,18 @@ class BarberActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Location ${result.data.toString()}")
-                            //location = result.data!!.extras?.getParcelable("location",Location::class.java)!!
-                            location = result.data!!.extras?.getParcelable("location")!!
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             i("Location == $location")
+                            barber.lat = location.lat
+                            barber.lng = location.lng
+                            barber.zoom = location.zoom
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
     }
+
 
 
     private fun registerImagePickerCallback() {

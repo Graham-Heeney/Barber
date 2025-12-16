@@ -41,20 +41,24 @@ class BarberJSONStore(private val context: Context) : BarberStore {
         serialize()
     }
 
-    override fun update(barber: BarberModel) {
-        val foundBarber = findOne(barber.id)
-        if (foundBarber != null) {
-            foundBarber.title = barber.title
-            foundBarber.description = barber.description
-            foundBarber.image = barber.image
 
-        }
-        serialize()
-    }
 
     override fun delete(barber: BarberModel) {
         barbers.removeIf { it.id == barber.id }
         serialize()
+    }
+
+    override fun update(barber: BarberModel) {
+        val foundBarber: BarberModel? = barbers.find { p -> p.id == barber.id }
+        if (foundBarber != null) {
+            foundBarber.title = barber.title
+            foundBarber.description = barber.description
+            foundBarber.image = barber.image
+            foundBarber.lat = barber.lat
+            foundBarber.lng = barber.lng
+            foundBarber.zoom = barber.zoom
+            logAll()
+        }
     }
 
 
