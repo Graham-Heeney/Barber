@@ -12,6 +12,8 @@ data class BarberModel(
     var image: String = ""
 ,    var lat : Double = 0.0,
     var lng: Double = 0.0,
+    var rating: Float = 0f,
+
     var zoom: Float = 0f) : Parcelable
 
 @Parcelize

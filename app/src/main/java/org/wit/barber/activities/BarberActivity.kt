@@ -73,6 +73,8 @@ class BarberActivity : AppCompatActivity() {
 
             binding.barberName.setText(barber.title)
             binding.barberAddress.setText(barber.description)
+            binding.barberRating.rating = barber.rating
+
 
             if (barber.image.isNotEmpty()) {
                 Picasso.get()
@@ -86,6 +88,8 @@ class BarberActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
             barber.title = binding.barberName.text.toString()
             barber.description = binding.barberAddress.text.toString()
+            barber.rating = binding.barberRating.rating
+
 
             if (barber.title.isNotEmpty()) {
                 if (intent.hasExtra("barber_edit")) {

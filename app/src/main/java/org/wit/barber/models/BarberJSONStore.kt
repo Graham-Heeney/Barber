@@ -57,6 +57,8 @@ class BarberJSONStore(private val context: Context) : BarberStore {
             foundBarber.lat = barber.lat
             foundBarber.lng = barber.lng
             foundBarber.zoom = barber.zoom
+            foundBarber.rating = barber.rating
+
             serialize()
             logAll()
         }

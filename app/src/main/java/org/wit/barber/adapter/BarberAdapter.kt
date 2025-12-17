@@ -74,6 +74,7 @@ class BarberAdapter(
         fun bind(barber: BarberModel, listener: BarberListener) {
             binding.barberTitle.text = barber.title
             binding.barberDescription.text = barber.description
+            binding.cardRating.rating = barber.rating
 
             if (barber.image.isNotEmpty()) {
                 Picasso.get()
