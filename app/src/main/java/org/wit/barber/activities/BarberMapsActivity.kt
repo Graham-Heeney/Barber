@@ -42,12 +42,14 @@ class BarberMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener 
 
     private fun configureMap() {
         map.uiSettings.isZoomControlsEnabled = true
+        map.setOnMarkerClickListener(this)
+
         app.barbers.findAll().forEach {
             val loc = LatLng(it.lat, it.lng)
             val options = MarkerOptions().title(it.title).position(loc)
             map.addMarker(options)?.tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
-            map.setOnMarkerClickListener(this)
+
 
 
         }
@@ -86,7 +88,7 @@ class BarberMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener 
         binding.contentBarberMaps.currentTitle.text = placemark!!.title
         binding.contentBarberMaps.currentDescription.text = placemark.description
         Picasso.get().load(placemark.image).into(binding.contentBarberMaps.currentImage)
-        return false
+        return true
     }
 
 

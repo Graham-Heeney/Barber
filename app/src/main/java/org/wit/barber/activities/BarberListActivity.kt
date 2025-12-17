@@ -19,19 +19,26 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBarberListBinding
+    private lateinit var barberAdapter: BarberAdapter
 
     private val mapIntentLauncher =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
-        )    { }
-
+        ) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityBarberListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
+        app = application as MainApp
+
+        barberAdapter = BarberAdapter(app.barbers.findAll(), this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = barberAdapter
+
         binding.fabAddBarber.setOnClickListener {
             val launcherIntent = Intent(this, BarberActivity::class.java)
             getResult.launch(launcherIntent)
@@ -40,17 +47,37 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
 
 
 
-        app = application as MainApp
+
+
+    app = application as MainApp
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = BarberAdapter(app.barbers.findAll(), this)
+        barberAdapter.updateData(app.barbers.findAll())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
+
+        val searchItem = menu.findItem(R.id.item_search)
+        val searchView = searchItem.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.queryHint = "Search barbers..."
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                barberAdapter.filter.filter(query ?: "")
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                barberAdapter.filter.filter(newText ?: "")
+                return false
+            }
+        })
+
+        return true
     }
+
 
 
 
@@ -59,12 +86,12 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
-                (binding.recyclerView.adapter)?.notifyItemRangeChanged(
-                    0,
-                    app.barbers.findAll().size
-                )
+                barberAdapter.updateData(app.barbers.findAll())
             }
         }
+
+
+
 
     override fun onBarberClick(barber: BarberModel) {
         val launcherIntent = Intent(this, BarberActivity::class.java)
@@ -79,12 +106,10 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
             ActivityResultContracts.StartActivityForResult()
         ) {
             if (it.resultCode == RESULT_OK) {
-                // Rebind the adapter to the updated list
-                binding.recyclerView.adapter =
-                    BarberAdapter(app.barbers.findAll(), this)
-                binding.recyclerView.adapter?.notifyDataSetChanged()
+                barberAdapter.updateData(app.barbers.findAll())
             }
         }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
