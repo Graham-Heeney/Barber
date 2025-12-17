@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,6 +72,8 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 barberAdapter.filter.filter(newText ?: "")
+                updateEmptyState()
+
                 return false
             }
         })
@@ -78,6 +81,13 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         return true
     }
 
+    private fun updateEmptyState() {
+        if (barberAdapter.itemCount == 0) {
+            binding.emptyStateText.visibility = View.VISIBLE
+        } else {
+            binding.emptyStateText.visibility = View.GONE
+        }
+    }
 
 
 
@@ -87,6 +97,8 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 barberAdapter.updateData(app.barbers.findAll())
+                updateEmptyState()
+
             }
         }
 
@@ -107,6 +119,8 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
         ) {
             if (it.resultCode == RESULT_OK) {
                 barberAdapter.updateData(app.barbers.findAll())
+                updateEmptyState()
+
             }
         }
 
