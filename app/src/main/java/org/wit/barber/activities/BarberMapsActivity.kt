@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.wit.barber.R
 import org.wit.barber.main.MainApp
@@ -12,7 +13,7 @@ import org.wit.barber.main.MainApp
 import org.wit.barber.databinding.ActivityBarberMapsBinding
 import org.wit.barber.databinding.ContentBarberMapsBinding
 
-class BarberMapsActivity : AppCompatActivity() {
+class BarberMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
 
     private lateinit var binding: ActivityBarberMapsBinding
     private lateinit var map: GoogleMap
@@ -43,6 +44,8 @@ class BarberMapsActivity : AppCompatActivity() {
             val options = MarkerOptions().title(it.title).position(loc)
             map.addMarker(options)?.tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+            map.setOnMarkerClickListener(this)
+
 
         }
     }
@@ -72,4 +75,13 @@ class BarberMapsActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         binding.contentBarberMaps.mapView.onSaveInstanceState(outState)
     }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        binding.contentBarberMaps.currentTitle.text = marker.title
+
+        return false
+    }
+
+
+
 }
