@@ -18,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.squareup.picasso.Picasso
 import org.wit.barber.helpers.showImagePicker
 import org.wit.barber.models.Location
+import androidx.appcompat.app.AlertDialog
 
 
 class BarberActivity : AppCompatActivity() {
@@ -160,6 +161,18 @@ class BarberActivity : AppCompatActivity() {
 
 
 
+    private fun showDeleteConfirmDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Barber")
+            .setMessage("Are you sure you want to delete this barber?")
+            .setPositiveButton("Delete") { _, _ ->
+                app.barbers.delete(barber)
+                setResult(RESULT_OK)
+                finish()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -171,11 +184,11 @@ class BarberActivity : AppCompatActivity() {
 
             R.id.item_delete -> {
                 if (intent.hasExtra("barber_edit")) {
-                    app.barbers.delete(barber)
-                    setResult(RESULT_OK)
-                    finish()
+                    showDeleteConfirmDialog()
                 }
             }
+
+
         }
         return super.onOptionsItemSelected(item)
     }
