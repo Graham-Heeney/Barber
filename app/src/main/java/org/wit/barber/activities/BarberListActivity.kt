@@ -20,6 +20,12 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
     lateinit var app: MainApp
     private lateinit var binding: ActivityBarberListBinding
 
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBarberListBinding.inflate(layoutInflater)
@@ -30,6 +36,8 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
             val launcherIntent = Intent(this, BarberActivity::class.java)
             getResult.launch(launcherIntent)
         }
+
+
 
 
         app = application as MainApp
@@ -77,5 +85,20 @@ class BarberListActivity : AppCompatActivity(), BarberListener {
                 binding.recyclerView.adapter?.notifyDataSetChanged()
             }
         }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_add -> {
+                val launcherIntent = Intent(this, BarberActivity::class.java)
+                getResult.launch(launcherIntent)
+            }
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, BarberMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
 }

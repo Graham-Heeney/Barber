@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barber"
         tools:targetApi="34">
+        <activity
+            android:name=".activities.BarberMapsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Barber" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
