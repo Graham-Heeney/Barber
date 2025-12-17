@@ -13,14 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Barber"
         tools:targetApi="34">
-        <activity
-            android:name=".activities.BarberMapsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Barber" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/MAPS_API_KEY" />
+
+        <activity
+            android:name=".activities.BarberMapsActivity"
+            android:exported="false" />
 
         <activity
             android:name=".activities.MapActivity"
@@ -28,22 +28,19 @@
             android:label="@string/title_activity_map" />
         <activity
             android:name=".activities.BarberListActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Barber">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".activities.BarberActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+        <activity
+            android:name=".activities.BarberActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

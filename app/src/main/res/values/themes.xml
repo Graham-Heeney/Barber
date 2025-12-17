@@ -13,5 +13,9 @@
     </style>
 
     <style name="Theme.Barber" parent="Base.Theme.Barber" />
+    <style name="Theme.Barber.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
 
 </resources>
