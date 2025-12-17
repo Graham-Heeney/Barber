@@ -69,8 +69,17 @@ class BarberActivity : AppCompatActivity() {
 
         if (intent.hasExtra("barber_edit")) {
             barber = intent.getParcelableExtra("barber_edit")!!
+
             binding.barberName.setText(barber.title)
             binding.barberAddress.setText(barber.description)
+
+            if (barber.image.isNotEmpty()) {
+                Picasso.get()
+                    .load(barber.image)
+                    .into(binding.barberImage)
+
+                binding.chooseImage.setText(R.string.change_barber_image)
+            }
         }
 
         binding.btnAdd.setOnClickListener {
@@ -126,16 +135,22 @@ class BarberActivity : AppCompatActivity() {
                 when (result.resultCode) {
                     RESULT_OK -> {
                         if (result.data != null) {
-                            i("Got Result ${result.data!!.data}")
-                            barber.image = result.data!!.data.toString()
+
+                            val imageUri = result.data!!.data!!
+
+                            contentResolver.takePersistableUriPermission(
+                                imageUri,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION
+                            )
+
+                            i("Got Result $imageUri")
+                            barber.image = imageUri.toString()
 
                             Picasso.get()
-                                .load(barber.image)
+                                .load(imageUri)
                                 .into(binding.barberImage)
 
-                            if (barber.image.isNotEmpty()) {
-                                binding.chooseImage.setText(R.string.change_barber_image)
-                            }
+                            binding.chooseImage.setText(R.string.change_barber_image)
                         }
                     }
                     RESULT_CANCELED -> { }

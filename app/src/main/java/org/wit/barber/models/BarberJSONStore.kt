@@ -72,6 +72,14 @@ class BarberJSONStore(private val context: Context) : BarberStore {
         write(context, JSON_FILE, jsonString)
     }
 
+    override fun findById(id:Long) : BarberModel? {
+        val foundPlacemark: BarberModel? = barbers.find { it.id == id }
+        return foundPlacemark
+    }
+
+
+
+
     private fun deserialize() {
         val jsonString = read(context, JSON_FILE)
         if (jsonString.isNotEmpty()) {

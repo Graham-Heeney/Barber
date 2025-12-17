@@ -6,4 +6,9 @@ interface BarberStore {
     fun create(barber: BarberModel)
     fun update(barber: BarberModel)
     fun delete(barber: BarberModel)
+
+
+    fun findById(id:Long) : BarberModel?
+
+
 }

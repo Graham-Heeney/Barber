@@ -1,12 +1,15 @@
 package org.wit.barber.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 import org.wit.barber.R
 import org.wit.barber.main.MainApp
 
@@ -77,11 +80,28 @@ class BarberMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener 
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        binding.contentBarberMaps.currentTitle.text = marker.title
-
+        //val placemark = marker.tag as PlacemarkModel
+        val tag = marker.tag as Long
+        val placemark = app.barbers.findById(tag)
+        binding.contentBarberMaps.currentTitle.text = placemark!!.title
+        binding.contentBarberMaps.currentDescription.text = placemark.description
+        Picasso.get().load(placemark.image).into(binding.contentBarberMaps.currentImage)
         return false
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_maps, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.item_close -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }
