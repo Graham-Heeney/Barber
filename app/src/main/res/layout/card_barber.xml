@@ -1,37 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:elevation="8dp"
-    android:layout_marginHorizontal="8dp">
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:strokeWidth="0dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/barberTitle"
-            android:layout_width="wrap_content"
+        <!-- Barber Image -->
+        <ImageView
+            android:id="@+id/barberImage"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="@string/app_name"/>
+
+        <!-- Text container -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:text="Barber Name" />
+            android:orientation="vertical"
+            android:padding="12dp">
 
-        <TextView
-            android:id="@+id/barberDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/barberTitle"
-            android:textSize="16sp"
-            tools:text="Barber description goes here" />
+            <TextView
+                android:id="@+id/barberTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Barber Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"/>
 
+            <TextView
+                android:id="@+id/barberDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp"/>
+            <TextView
+                android:text="⭐ 4.7"
+                android:textSize="13sp"
+                android:textColor="#C9A14A" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
+        </LinearLayout>
 
+    </LinearLayout>
 
-
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -8,6 +8,7 @@ import org.wit.barber.models.BarberModel
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Filter.FilterResults
+import com.squareup.picasso.Picasso
 
 interface BarberListener {
     fun onBarberClick(barber: BarberModel)
@@ -73,7 +74,17 @@ class BarberAdapter(
         fun bind(barber: BarberModel, listener: BarberListener) {
             binding.barberTitle.text = barber.title
             binding.barberDescription.text = barber.description
-            binding.root.setOnClickListener { listener.onBarberClick(barber) }
+
+            if (barber.image.isNotEmpty()) {
+                Picasso.get()
+                    .load(barber.image)
+                    .into(binding.barberImage)
+            }
+
+            binding.root.setOnClickListener {
+                listener.onBarberClick(barber)
+            }
         }
+
     }
 }
