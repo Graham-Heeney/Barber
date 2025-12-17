@@ -1,105 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.BarberActivity"
-    android:background="@color/background"
-    >
+    tools:context="org.wit.barber.activities.BarberActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:fitsSystemWindows="true"
         app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white" />
+            app:titleTextColor="@color/colorPrimary" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="600dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
             android:id="@+id/barberName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Barber Name"
-            android:inputType="textPersonName"
-            android:background="@drawable/edittext_bg"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
+            android:layout_width="365dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="128dp"
+            android:hint="@string/hint_barberTitle"
+            android:inputType="text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@+id/barberAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Barber Address"
-            android:inputType="textPostalAddress"
-            android:background="@drawable/edittext_bg"
-            android:padding="12dp"
-            android:textColorHint="@color/gray"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="20dp" />
-
-        <Button
-            android:id="@+id/chooseImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@color/colorAccent"
-            android:importantForAccessibility="no"
-            android:padding="8dp"
-            android:text="@string/button_addImage"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <ImageView
-            android:id="@+id/barberImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:importantForAccessibility="no"
-            app:srcCompat="@mipmap/ic_launcher"
-            tools:ignore="ImageContrastCheck" />
-        <Button
-            android:id="@+id/barberLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@color/colorAccent"
-            android:padding="8dp"
-            android:stateListAnimator="@null"
-            android:text="@string/button_location"
-            android:textColor="@color/colorPrimary"
-            android:textSize="16sp"/>
-
+            android:layout_width="365dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:hint="@string/hint_barberDescription"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@id/barberName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/btnAdd"
-            android:layout_width="match_parent"
+            android:layout_width="365dp"
             android:layout_height="wrap_content"
-            android:text="Add Barber"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/colorAccent"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="8dp" />
+            android:text="@string/button_addBarber"
+            app:layout_constraintTop_toBottomOf="@id/barberAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
+        <Button
+            android:id="@+id/chooseImage"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/button_addImage"
+            app:layout_constraintTop_toBottomOf="@id/btnAdd"
+            app:layout_constraintStart_toStartOf="@id/btnAdd" />
 
-    </LinearLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <Button
+            android:id="@+id/barberLocation"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/button_location"
+            app:layout_constraintTop_toBottomOf="@id/btnAdd"
+            app:layout_constraintEnd_toEndOf="@id/btnAdd" />
+
+        <ImageView
+            android:id="@+id/barberImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            app:layout_constraintTop_toBottomOf="@id/barberLocation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
