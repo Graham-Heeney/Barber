@@ -82,7 +82,6 @@ class BarberMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener 
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        //val placemark = marker.tag as PlacemarkModel
         val tag = marker.tag as Long
         val placemark = app.barbers.findById(tag)
         binding.contentBarberMaps.currentTitle.text = placemark!!.title

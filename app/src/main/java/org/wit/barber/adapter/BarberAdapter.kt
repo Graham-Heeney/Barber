@@ -35,7 +35,7 @@ class BarberAdapter(
 
     fun updateData(newBarbers: MutableList<BarberModel>) {
         barbers = newBarbers
-        barbersFull = newBarbers.toList()   // reset the master copy
+        barbersFull = newBarbers.toList()
         notifyDataSetChanged()
     }
 

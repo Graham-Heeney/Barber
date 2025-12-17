@@ -14,31 +14,40 @@
         android:theme="@style/Theme.Barber"
         tools:targetApi="34">
 
+        <!-- Google Maps API -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/MAPS_API_KEY" />
 
+        <!-- LOGIN SCREEN (APP ENTRY POINT) -->
         <activity
-            android:name=".activities.BarberMapsActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.MapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_map" />
-        <activity
-            android:name=".activities.BarberListActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Barber">
+            android:name=".activities.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- MAIN LIST SCREEN -->
+        <activity
+            android:name=".activities.BarberListActivity"
+            android:exported="false" />
 
+        <!-- ADD / EDIT BARBER -->
         <activity
             android:name=".activities.BarberActivity"
+            android:exported="false" />
+
+        <!-- SINGLE BARBER MAP -->
+        <activity
+            android:name=".activities.MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map" />
+
+        <!-- VIEW ALL BARBERS MAP -->
+        <activity
+            android:name=".activities.BarberMapsActivity"
             android:exported="false" />
 
     </application>
